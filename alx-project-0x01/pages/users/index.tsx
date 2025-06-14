@@ -1,33 +1,47 @@
+// pages/users/index.tsx
+
 import Header from "@/components/layout/Header";
 import UserCard from "@/components/common/UserCard";
-import { UserProps } from "@/interfaces";
+import UserModal from "@/components/common/UserModal";
+import { UserData } from "@/interfaces";
+import { useState } from "react";
 
 interface UsersPageProps {
-  posts: UserProps[];
+  posts: UserData[];
 }
 
 const Users: React.FC<UsersPageProps> = ({ posts }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [userList, setUserList] = useState<UserData[]>(posts);
+
+  const handleAddUser = (newUser: UserData) => {
+    const newUserWithId = { ...newUser, id: userList.length + 1 };
+    setUserList([newUserWithId, ...userList]);
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <Header />
       <main className="p-4">
-        <h1 className="text-2xl font-semibold mb-4">Users List</h1>
+        <div className="flex justify-between mb-4">
+          <h1 className="text-2xl font-semibold">Users List</h1>
+          <button
+            onClick={() => setModalOpen(true)}
+            className="bg-blue-700 px-4 py-2 rounded-full text-white"
+          >
+            Add User
+          </button>
+        </div>
         <div className="grid grid-cols-3 gap-4">
-          {posts.map((user) => (
-            <UserCard
-              key={user.id}
-              id={user.id}
-              name={user.name}
-              username={user.username}
-              email={user.email}
-              address={user.address}
-              phone={user.phone}
-              website={user.website}
-              company={user.company}
-            />
+          {userList.map((user) => (
+            <UserCard key={user.id} {...user} />
           ))}
         </div>
       </main>
+
+      {isModalOpen && (
+        <UserModal onClose={() => setModalOpen(false)} onSubmit={handleAddUser} />
+      )}
     </div>
   );
 };
