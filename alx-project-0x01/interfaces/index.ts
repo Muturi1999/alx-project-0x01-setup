@@ -71,6 +71,9 @@
 
 // export interface UserProps extends UserData {}
 // interfaces/index.ts
+// interfaces/index.ts
+
+// interfaces/index.ts
 
 export interface PostProps {
   userId: number;
@@ -115,7 +118,9 @@ export interface UserData {
   };
 }
 
+export type UserProps = UserData
+
 export interface UserModalProps {
   onClose: () => void;
-  onSubmit: (user: UserData) => void;
+  onSubmit: (post: UserProps) => void;
 }
