@@ -6,13 +6,17 @@ import Header from "@/components/layout/Header";
 import { PostProps, PostData } from "@/interfaces";
 import { useState } from "react";
 
-
 interface PostsPageProps {
   posts: PostProps[];
 }
 
 const Posts: React.FC<PostsPageProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [post, setPost] = useState<PostData | null>(null);
+
   const [postList, setPostList] = useState<PostProps[]>(posts);
 
   const handleAddPost = (newPost: PostData) => {
