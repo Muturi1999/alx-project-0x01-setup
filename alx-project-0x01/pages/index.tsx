@@ -1,12 +1,24 @@
-import Button from "@/components/common/Button";
+import Header from "@/components/layout/Header";
 
-const UsersPage: React.FC = () => {
+const Home: React.FC = () => {
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Users</h1>
-      <Button text="Click Me" onClick={() => alert("User Clicked!")} />
+    <div className="flex flex-col h-screen">
+      <Header />
+      <main className="flex-grow flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+        <div className="text-center">
+          <h1 className="text-5xl font-bold text-white">
+            Welcome to our Application!
+          </h1>
+          <p className="mt-4 text-xl text-white">
+            Were glad youre here. Explore and enjoy your experience.
+          </p>
+          <button className="mt-6 px-6 py-3 bg-white text-blue-500 rounded-full font-semibold hover:bg-gray-200 transition">
+            Get Started
+          </button>
+            </div>
+      </main>
     </div>
-  );
-};
+  )
+}
 
-export default UsersPage;
+export default Home;
